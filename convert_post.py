@@ -1,4 +1,4 @@
-# 作者：百度贴吧 @pl_mich
+# 作者：百度贴吧 @pl-mich
 # 致谢：
 # https://blog.csdn.net/zhaobig/article/details/77198978 及其作者 @纳尔逊皮卡丘
 # https://www.jianshu.com/p/27c534394890 及其作者 @小新你蜡笔呢
