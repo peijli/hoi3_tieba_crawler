@@ -1,4 +1,4 @@
-# 作者：百度贴吧 @pl-mich
+# 作者：百度贴吧 @pl_mich
 # 致谢：
 # https://blog.csdn.net/zhaobig/article/details/77198978 及其作者 @纳尔逊皮卡丘
 # https://www.jianshu.com/p/27c534394890 及其作者 @小新你蜡笔呢
@@ -59,7 +59,8 @@ def convert_post(id_title_tuple: tuple) -> bool:
 
     # 发起请求获取第一页源代码，利用正则匹配在其中找到总页数，并储存到total变量中
     response = urllib.request.urlopen(url)
-    pattern = re.compile('<li class="l_reply_num.*?<span.*?<span class="red">(.*?)</span>',re.S)
+    pattern = re.compile(
+        '<li class="l_reply_num.*?<span.*?<span class="red">(.*?)</span>',re.S)
     html = response.read().decode()
     rs = re.search(pattern, html)
     total = int(rs.group(1))
@@ -86,7 +87,8 @@ def convert_post(id_title_tuple: tuple) -> bool:
         # pdfkit的另外一个设置——如果不让它“忽略”所有爬取中出现的各种大小错误，
         # 则不仅程序运行会中断，而且不会有任何pdf文件生成
         options = {'load-error-handling': 'ignore'}
-        pdfkit.from_url(url_list, filename, configuration = config, options = options)
+        pdfkit.from_url(
+            url_list, filename, configuration = config, options = options)
         print("pdf保存完成！")
         return True
 
@@ -139,13 +141,17 @@ def get_post_id_list() -> list:
         print("%d页精品贴链接提取完成" % (i / 50))
         print(len(return_list))
     return return_list  
+    
 
 if __name__ == "__main__":
+
     # 提取所有精品贴的访问id和贴子标题的元组
     id_list = get_post_id_list()
+
     # 将每一个精品贴对应的元组打印出来——测试用
     # for id_title_tuple in id_list:
     #     print(id_title_tuple)
+    
     # 将每一个精品贴保存为pdf
     for id_title_tuple in id_list:
         convert_post(id_title_tuple)
